@@ -1,0 +1,60 @@
+<form [formGroup]="formulario">
+<div fxLayout="column" class="card">
+    <div class="titulo" fxFlex="100" fxLayoutAlign="start center">
+        <strong>Nova movimentação</strong>
+    </div>
+    <div fxFlex="100%" fxLayoutAlign="center center">
+        <mat-form-field>
+            <mat-label>Descrição</mat-label>
+            <input matInput formControlName="descricao">
+            <mat-hint>ex: academia, mercado, gás</mat-hint>
+        </mat-form-field>  
+    </div>
+
+    <div class="form" fxLayout="row" fxLayoutAlign="center center">
+        <div fxFlex="90%">
+            <mat-form-field>
+                <mat-label>Valor</mat-label>
+                <input matInput currencyMask [options]="{ prefix: '', thousands: '.', decimal: ',' }" formControlName="valor">
+                <mat-hint>ex: R$ 250,00</mat-hint>
+            </mat-form-field>   
+        </div>
+        <div fxFlex="90%">
+            <mat-form-field>
+                <mat-label>Data</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="dataInclusao">
+                <mat-hint>DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field> 
+        </div>
+    </div>
+    <div class="form" fxLayout="row" fxLayoutAlign="center center">
+        <div fxFlex="90%"> 
+            <mat-form-field>
+            <mat-label>Conta/cartão</mat-label>
+            <mat-select  formControlName="conta">
+                <!-- @for (food of foods; track categorias) {
+                <mat-option [value]="food.value">{{food.viewValue}}</mat-option>
+                } -->
+            </mat-select>
+            </mat-form-field>
+        </div>
+        <div fxFlex="90%"> 
+        <mat-form-field>
+        <mat-label>Categoria</mat-label>
+        <mat-select formControlName="categoria">
+            @for (categoria of categorias; track categoria) {
+            <mat-option [value]="categoria">{{categoria.descricao}}</mat-option>
+            }
+        </mat-select>
+        </mat-form-field>
+        </div>
+    </div>
+    <div class="form" fxLayout="row" fxLayoutAlign="end end">
+        <button mat-button mat-raised-button (click)="cancelar()">Cancelar</button>
+        <button mat-button mat-raised-button color="primary" (click)="salvar()" [disabled]="!formulario.valid">Salvar</button>
+    </div>
+</div>
+</form>
+

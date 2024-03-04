@@ -1,0 +1,29 @@
+.container-card{
+  background-color: #F2F4EF;
+  padding-top: 40px;
+  height: 100%;
+  padding-inline-start: 20%;
+  padding-inline-end: 20%;
+  margin-top: 60px; /* Ajusta o espaçamento para evitar sobreposição com o app-topmenubar */
+  margin-bottom: 60px; /* Ajusta o espaçamento para evitar sobreposição com o app-footbar */
+  /* Adicione outros estilos necessários para o container-card */
+}
+
+.conteudo-card{
+  text-align: center;
+}
+
+app-topmenubar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000; /* Garante que fique sobreposto a outros elementos */
+}
+
+/* Fixa o componente app-footbar na parte inferior */
+app-footbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000; /* Garante que fique sobreposto a outros elementos */
+}

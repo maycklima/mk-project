@@ -1,0 +1,44 @@
+<mat-card class="card">
+  <div class="cabecalho" fxLayout="row" fxLayoutAlign="center center" >
+    <div fxFlex="20">
+    </div>
+
+    <div fxFlex="60" fxLayoutAlign="center center" >
+      <mat-icon>keyboard_arrow_left</mat-icon>
+      Março
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </div>
+
+    <div fxFlex="20" fxLayoutAlign="center center" >
+      <strong>Movimentações</strong>
+      <button mat-fab color="primary" aria-label="Example icon button with a home icon" (click)="openDialog('250ms', '250ms')" class="mat-fab-adicionar">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <div class="content">
+    <mat-card *ngFor="let categoriaAgrupada of movimentacoes" fxLayout="column" class="categorias">
+      <div class="titulo" fxLayout="column" fxLayoutAlign="start center">
+        <strong>{{ categoriaAgrupada.categoria.descricao }} : {{ calcularTotal(categoriaAgrupada.itens) | currency : 'BRL' : ''  }}</strong>
+      </div>
+      <div class="movimentacoes">
+        <div class="itens" *ngFor="let movimentacao of categoriaAgrupada.itens" fxLayout="row" (click)="openDialog('250ms', '250ms')">
+          <div fxFlex="45" fxLayoutAlign="start center" >{{ movimentacao.descricao }}</div>
+          <div fxFlex="20" fxLayoutAlign="start center" >{{ formatarMoeda(movimentacao.valor) }}</div>
+          <div fxFlex="5" fxLayoutAlign="center center">
+            <mat-icon style="color: green;" *ngIf="movimentacao.pago === true">thumb_up_alt</mat-icon>
+            <mat-icon style="color: grey;" *ngIf="movimentacao.pago === false">thumb_down_alt</mat-icon>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+    <mat-card class="fixo" fxLayout="row" fxLayoutAlign="end center" >
+      <div> Total entrada: {{totalEntrada | currency : 'BRL' : ''}}</div>
+      <div> Total saída: {{totalSaida | currency : 'BRL' : ''}}</div>
+      <div> Saldo Total: {{totalEntrada + totalSaida | currency : 'BRL' : ''}}</div>
+    </mat-card>
+  </div>
+</mat-card>
