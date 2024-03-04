@@ -16,7 +16,6 @@
 
 .movimentacoes {
   margin-top: 3%;
-  padding-left: 5%;
 }
 
 .itens {
@@ -46,7 +45,6 @@
 }
 
 .titulo {
-  background-color: gray;
 }
 
 div {
@@ -55,11 +53,19 @@ div {
 
 .itens {
   // background-color: blue;
+ 
+  background-color: #f5f5f5;
 }
 
 .total {
   padding-top: 2%;
   width: 70%;
+  font-weight: bold; /* Adiciona negrito */
+  font-size: 1em; /* Aumenta o tamanho da fonte */
+}
+
+.total-categoria {
+  width: 90%;
   font-weight: bold; /* Adiciona negrito */
   font-size: 1em; /* Aumenta o tamanho da fonte */
 }

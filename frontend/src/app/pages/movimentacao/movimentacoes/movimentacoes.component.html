@@ -19,12 +19,12 @@
 
   <div fxLayout="column" fxLayoutAlign="center center">
     <div class="content">
-    <mat-card *ngFor="let categoriaAgrupada of movimentacoes" fxLayout="column" class="categorias">
+    <mat-card *ngFor="let categoriaAgrupada of movimentacoes" fxLayout="column" fxLayoutAlign="center center" class="categorias">
       <div class="titulo" fxLayout="column" fxLayoutAlign="start center">
-        <strong>{{ categoriaAgrupada.categoria.descricao }} : {{ calcularTotal(categoriaAgrupada.itens) | currency : 'BRL' : ''  }}</strong>
+        <strong>{{ categoriaAgrupada.categoria.descricao }}</strong>
       </div>
       <div class="movimentacoes">
-        <div class="itens" *ngFor="let movimentacao of categoriaAgrupada.itens" fxLayout="row" (click)="openDialog('250ms', '250ms')">
+        <div class="itens" *ngFor="let movimentacao of categoriaAgrupada.itens" fxLayout="row" fxLayoutAlign="center center" (click)="openDialog('250ms', '250ms')">
           <div fxFlex="45" fxLayoutAlign="start center" >{{ movimentacao.descricao }}</div>
           <div fxFlex="20" fxLayoutAlign="start center" >{{ formatarMoeda(movimentacao.valor) }}</div>
           <div fxFlex="5" fxLayoutAlign="center center">
@@ -33,12 +33,17 @@
           </div>
         </div>
       </div>
+      <br>
+      <div fxLayout="column"class="total-categoria" fxLayoutAlign="center end">
+        <strong>Total: {{ calcularTotal(categoriaAgrupada.itens) | currency : 'BRL' : ''  }}</strong>
+      </div>
+      <br>
     </mat-card>
   </div>
-    <mat-card class="fixo" fxLayout="row" fxLayoutAlign="end center" >
-      <div> Total entrada: {{totalEntrada | currency : 'BRL' : ''}}</div>
-      <div> Total saída: {{totalSaida | currency : 'BRL' : ''}}</div>
-      <div> Saldo Total: {{totalEntrada + totalSaida | currency : 'BRL' : ''}}</div>
+    <mat-card class="fixo" fxLayout="column" fxLayoutAlign="center end" >
+      <!-- <div> Total entrada: {{totalEntrada | currency : 'BRL' : ''}}</div>
+      <div> Total saída: {{totalSaida | currency : 'BRL' : ''}}</div> -->
+      <div> Saldo: {{totalEntrada + totalSaida | currency : 'BRL' : ''}}</div>
     </mat-card>
   </div>
 </mat-card>
