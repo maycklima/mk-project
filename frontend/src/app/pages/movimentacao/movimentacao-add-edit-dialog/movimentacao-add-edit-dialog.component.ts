@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Inject, Output } from '@angular/core';
 import { MaterialModule } from '../../../shared/material.module';
 import { CommonModule } from '@angular/common';
 import { CategoriaService } from '../../categoria/categoria.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { tap } from 'rxjs';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MovimentacoesService } from '../movimentacoes/movimentacoes.service';
 
 @Component({
@@ -19,6 +19,9 @@ import { MovimentacoesService } from '../movimentacoes/movimentacoes.service';
 
 export class MovimentacaoAddEditDialogComponent {
 
+  @Output() movimentacaoAdicionadaEmit = new EventEmitter<string>();
+
+
   formulario!: FormGroup;
   categorias: any;
 
@@ -27,11 +30,15 @@ export class MovimentacaoAddEditDialogComponent {
     private _snackBar: MatSnackBar,
     private _categoriaService: CategoriaService,
     private _dialogRef: MatDialogRef<MovimentacaoAddEditDialogComponent>,
-    private _movimentacoesService: MovimentacoesService){}
+    private _movimentacoesService: MovimentacoesService,
+    @Inject(MAT_DIALOG_DATA) public data: any){}
   
     ngOnInit() {
     this.inicializarFormulario();
-    this.getMovimentacoes();
+    this.getCategorias();
+
+    this.formulario.patchValue(this.data);
+    console.log(this.formulario)
     }
 
     inicializarFormulario(){
@@ -39,14 +46,16 @@ export class MovimentacaoAddEditDialogComponent {
         id: [],
         descricao:[null, Validators.required],
         valor: [0, Validators.required],
+        tipo: ['ENTRADA', Validators.required],
         pago: [false, Validators.required],
+        data: [new Date(), Validators.required],
         dataInclusao: [new Date(), Validators.required],
         conta:[null],
         categoria: [null, Validators.required]
       });
     }
 
-    getMovimentacoes(): void {
+    getCategorias(): void {
       this._categoriaService.getCategorias()
         .pipe(
           tap({
