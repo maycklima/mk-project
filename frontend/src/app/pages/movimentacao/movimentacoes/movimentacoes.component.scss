@@ -9,13 +9,12 @@
   justify-content: space-between;
   align-items: center; /* para centralizar verticalmente */
   padding: 1%;
-  background-color:#F6BD60;
+  background-color:#718562ff;
   border-radius: 35px;
   margin-bottom: 2%;
 }
 
 .movimentacoes {
-  margin-top: 3%;
 }
 
 .itens {
@@ -24,7 +23,7 @@
 }
 
 .itens:hover {
-  background-color: #ffd796;
+  background-color: #d5d8b5;
   cursor: pointer;
 }
 
@@ -41,10 +40,11 @@
   margin-bottom: 1%;
   width: 90%;
   min-width: 300px;
-  min-height: 200px;
+  min-height: 100px;
 }
 
 .titulo {
+  background-color: #d5d8b5;
 }
 
 div {
@@ -83,7 +83,33 @@ div {
   margin-top: auto; 
   width: 100%;
   height: 80px;
-  background-color: #F6BD60;
+  background-color: #d5d8b5;
   font-weight: bold; /* Adiciona negrito */
   font-size: 1.2em; /* Garante que o mat-card fixo fique na parte inferior da tela */
+}
+
+.movimentacoes-empty {
+  display: flex;
+  justify-content: right;
+  position: sticky;
+  bottom: 0;
+  margin-top: auto; 
+  width: 100%;
+  height: 80px;
+  font-weight: bold; /* Adiciona negrito */
+  font-size: 1.2em;
+
+}
+
+.icone-mes-anterior-proximo {
+  border-radius: 50%; /* Define o raio da borda para 50% da largura/altura da div, tornando-a redonda */
+  width: 25px; /* Defina a largura desejada */
+  height: 25px;
+  margin: 1%;
+  font-size: 24px;  /* Adicione uma cor de fundo para ver a forma redonda */
+}
+
+.icone-mes-anterior-proximo:hover {
+  background-color: #d5d8b5;
+  cursor: pointer;
 }

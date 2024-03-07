@@ -1,6 +1,6 @@
 import { DataSource } from '@angular/cdk/collections';
 import { HttpClientModule } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -20,6 +20,8 @@ import { MaterialModule } from '../../../shared/material.module';
 })
 
 export class MovimentacoesComponent implements OnInit {
+
+
   formulario!: FormGroup;
   usuario: any;
   lojas:any;
@@ -27,6 +29,9 @@ export class MovimentacoesComponent implements OnInit {
   movimentacoes: any;
   totalEntrada: any;
   totalSaida: any;
+  dataAtual: Date = new Date();
+  nomeMes: any;
+  ano: any;
 
   constructor(
   private router: Router,
@@ -47,20 +52,34 @@ export class MovimentacoesComponent implements OnInit {
   }
 
   
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(MovimentacaoAddEditDialogComponent, {
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string, tipo: string): void {
+    const dialogRef = this.dialog.open(MovimentacaoAddEditDialogComponent, {
       width: '520px',
       height: '400px',
       enterAnimationDuration,
       exitAnimationDuration,
+      data: { tipo: tipo }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getMovimentacoes();
     });
   }
+  
 
 getMovimentacoes(): void {
-  this._movimentacoesService.getMovimentacoes()
+  const nomeMesCompleto = this.dataAtual.toLocaleString('pt-BR', { month: 'long' });
+  this.nomeMes = nomeMesCompleto.charAt(0).toUpperCase() + nomeMesCompleto.slice(1);
+  this.ano = this.dataAtual.getFullYear();
+
+  console.log('this.dataAtual')
+  console.log( this.dataAtual)
+  let movimentacaoFilter = {mesMovimentacao: (this.dataAtual.getMonth() + 1).toString(), anoMovimentacao: this.ano.toString(), ordeBy: 'ASC'}
+  this._movimentacoesService.getMovimentacoes(movimentacaoFilter)
     .pipe(
       tap({
         next: (data) => {
+          console.log(data);
           this.totalEntrada = data
           .filter((movimentacao: { tipo: string; }) => movimentacao.tipo === 'ENTRADA')
           .reduce((total: any, movimentacao: { valor: any; }) => total + movimentacao.valor, 0);
@@ -79,6 +98,31 @@ getMovimentacoes(): void {
       })
     )
     .subscribe();
+}
+
+proximoMes(){
+  let nextMes = new Date(this.dataAtual);
+  this.dataAtual.setMonth(nextMes.getMonth() + 1);
+  this.atualizaNomeMes(this.dataAtual);
+  this.atualizaAno(this.dataAtual);
+  console.log(this.dataAtual)
+  this.getMovimentacoes();
+}
+
+atualizaNomeMes(data: Date) {
+  this.nomeMes = data.toLocaleString('pt-BR', { month: 'long' }).charAt(0).toUpperCase() + data.toLocaleString('pt-BR', { month: 'long' }).slice(1);
+}
+
+atualizaAno(data: Date) {
+  this.ano = data.getFullYear();
+}
+
+mesAnterior(){
+  let nextMes = new Date(this.dataAtual);
+  this.dataAtual.setMonth(nextMes.getMonth() - 1);
+  this.atualizaNomeMes(this.dataAtual);
+  this.atualizaAno(this.dataAtual);
+  this.getMovimentacoes();
 }
 
 gruparMovimentacoesPorCategoria(movimentacoes: any[]): CategoriaAgrupada[] {

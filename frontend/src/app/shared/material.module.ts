@@ -16,6 +16,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatListModule} from '@angular/material/list';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatMenuModule} from '@angular/material/menu';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { CurrencyMaskModule } from "ng2-currency-mask";
@@ -39,6 +40,7 @@ const MaterialComponents = [
     ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatMenuModule,
     FlexLayoutModule,
     CurrencyMaskModule
 ];

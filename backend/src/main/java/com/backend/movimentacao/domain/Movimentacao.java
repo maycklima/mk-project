@@ -21,6 +21,8 @@ public class Movimentacao {
     @ManyToOne
     private Categoria categoria;
 
+    private LocalDateTime data;
+
     private BigDecimal valor;
 
     private boolean pago;
