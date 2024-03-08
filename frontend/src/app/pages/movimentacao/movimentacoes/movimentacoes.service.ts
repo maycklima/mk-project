@@ -20,6 +20,10 @@ adicionarMovimentacao(movimentacao: any): Observable<any> {
   return this.http.post<any>('http://localhost:8080/movimentacao', movimentacao);
 }
 
+atualizarMovimentacao(movimentacao: any): Observable<any[]> {
+  return this.http.put<any[]>('http://localhost:8080/movimentacao', movimentacao);
+}
+
 prepareGetRequest(formValue: any): any {
   for (const k in formValue) {
       const valueField = formValue[k];

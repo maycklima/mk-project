@@ -29,6 +29,8 @@ export class MovimentacoesComponent implements OnInit {
   movimentacoes: any;
   totalEntrada: any;
   totalSaida: any;
+  totalEntradaPago: any;
+  totalSaidaPago: any;
   dataAtual: Date = new Date();
   nomeMes: any;
   ano: any;
@@ -65,6 +67,26 @@ export class MovimentacoesComponent implements OnInit {
       this.getMovimentacoes();
     });
   }
+
+  testeClick(movimentacao:any) {
+   console.log(movimentacao)
+   console.log(movimentacao)
+
+   movimentacao.pago = !movimentacao.pago
+
+   this._movimentacoesService.atualizarMovimentacao(movimentacao).subscribe(resultado => {
+    console.log(resultado)
+    if(resultado){
+      this._snackBar.open("Item atualizado com sucesso!", "Fechar", {
+        duration: 2000,
+        verticalPosition: 'bottom',
+        panelClass: 'notify-successful'
+    });
+    }
+
+    this.getMovimentacoes();
+  });
+  }
   
 
 getMovimentacoes(): void {
@@ -81,11 +103,19 @@ getMovimentacoes(): void {
         next: (data) => {
           console.log(data);
           this.totalEntrada = data
-          .filter((movimentacao: { tipo: string; }) => movimentacao.tipo === 'ENTRADA')
+          .filter((movimentacao: { tipo: string;}) => movimentacao.tipo === 'ENTRADA')
+          .reduce((total: any, movimentacao: { valor: any; }) => total + movimentacao.valor, 0);
+
+          this.totalEntradaPago = data
+          .filter((movimentacao: { tipo: string; pago:boolean }) => movimentacao.tipo === 'ENTRADA' && movimentacao.pago === true)
           .reduce((total: any, movimentacao: { valor: any; }) => total + movimentacao.valor, 0);
 
           this.totalSaida = data
           .filter((movimentacao: { tipo: string; }) => movimentacao.tipo === 'SAIDA')
+          .reduce((total: any, movimentacao: { valor: any; }) => total + movimentacao.valor, 0);
+
+          this.totalSaidaPago = data
+          .filter((movimentacao: { tipo: string; pago:boolean  }) => movimentacao.tipo === 'SAIDA' && movimentacao.pago === true)
           .reduce((total: any, movimentacao: { valor: any; }) => total + movimentacao.valor, 0);
 
 
@@ -153,6 +183,10 @@ gruparMovimentacoesPorCategoria(movimentacoes: any[]): CategoriaAgrupada[] {
 
 calcularTotal(itens: any[]): number {
   return itens.reduce((total, movimentacao) => total + movimentacao.valor, 0);
+}
+
+getExisteMovimentacoes(){
+ return this.movimentacoes.length === 0
 }
 
   entrar(){

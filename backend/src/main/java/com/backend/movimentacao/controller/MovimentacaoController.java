@@ -31,4 +31,9 @@ public class MovimentacaoController {
         return movimentacaoService.gravarMovimentacao(movimentacao);
     }
 
+    @PutMapping
+    public Movimentacao atualizarItem(@RequestBody Movimentacao movimentacao) {
+        return movimentacaoService.atualizarMovimentacao(movimentacao);
+    }
+
 }

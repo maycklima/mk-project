@@ -33,14 +33,9 @@
 }
 
 .categorias{
-  display: flex;
-  justify-content: space-between start;
   margin-left: 5%;
   margin-right: 5%;
-  margin-bottom: 1%;
   width: 90%;
-  min-width: 300px;
-  min-height: 100px;
 }
 
 .titulo {
@@ -57,6 +52,12 @@ div {
   background-color: #f5f5f5;
 }
 
+.item-total {
+  padding: 0.5%;
+  background-color: #f5f5f5;
+  border-top:1px dashed #d5d8b5;
+}
+
 .total {
   padding-top: 2%;
   width: 70%;
@@ -67,12 +68,8 @@ div {
 .total-categoria {
   width: 90%;
   font-weight: bold; /* Adiciona negrito */
-  font-size: 1em; /* Aumenta o tamanho da fonte */
-}
-
-.content {
-  flex-grow: 1;
-  overflow-y: auto; /* Permite a rolagem quando o conteúdo excede a altura da janela */
+  font-size: 1em;
+ /* Aumenta o tamanho da fonte */
 }
 
 .fixo {
@@ -85,7 +82,7 @@ div {
   height: 80px;
   background-color: #d5d8b5;
   font-weight: bold; /* Adiciona negrito */
-  font-size: 1.2em; /* Garante que o mat-card fixo fique na parte inferior da tela */
+  font-size: 1.1em; /* Garante que o mat-card fixo fique na parte inferior da tela */
 }
 
 .movimentacoes-empty {
@@ -98,7 +95,6 @@ div {
   height: 80px;
   font-weight: bold; /* Adiciona negrito */
   font-size: 1.2em;
-
 }
 
 .icone-mes-anterior-proximo {
