@@ -3,10 +3,23 @@
   }
 
   .container {
-    padding-left: 15%;
     background-color: #58724fff;
   }
 
   .flex-container {
     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .square-button {
+    width: 40px; /* Ajuste de acordo com sua preferência */
+    height: 40px; /* Ajuste de acordo com sua preferência */
+    background-color: transparent;
+  border: none;
+  }
+
+  .square-button:hover {
+    background-color: rgb(97, 118, 89);
+    cursor: pointer;
   }

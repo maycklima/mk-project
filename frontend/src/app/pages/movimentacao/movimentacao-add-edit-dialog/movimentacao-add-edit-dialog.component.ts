@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { tap } from 'rxjs';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MovimentacoesService } from '../movimentacoes/movimentacoes.service';
+import { buscarPorChave } from '../model/TipoMovimentacao';
 
 @Component({
   selector: 'app-movimentacao-add-edit-dialog',
@@ -18,10 +19,7 @@ import { MovimentacoesService } from '../movimentacoes/movimentacoes.service';
 
 
 export class MovimentacaoAddEditDialogComponent {
-
-  @Output() movimentacaoAdicionadaEmit = new EventEmitter<string>();
-
-
+  
   formulario!: FormGroup;
   categorias: any;
 
@@ -37,6 +35,9 @@ export class MovimentacaoAddEditDialogComponent {
     this.inicializarFormulario();
     this.getCategorias();
 
+    console.log('this.data')
+    console.log(this.data)
+
     this.formulario.patchValue(this.data);
     console.log(this.formulario)
     }
@@ -46,7 +47,7 @@ export class MovimentacaoAddEditDialogComponent {
         id: [],
         descricao:[null, Validators.required],
         valor: [0, Validators.required],
-        tipo: ['ENTRADA', Validators.required],
+        tipo: [null, Validators.required],
         pago: [false, Validators.required],
         data: [new Date(), Validators.required],
         dataInclusao: [new Date(), Validators.required],
@@ -61,6 +62,7 @@ export class MovimentacaoAddEditDialogComponent {
           tap({
             next: (data) => {
               this.categorias = data;
+              console.log('this.categorias')// Adiciona os dados recebidos à variável dataToDisplay
               console.log(this.categorias)// Adiciona os dados recebidos à variável dataToDisplay
             },
             error: (error) => {
@@ -71,12 +73,16 @@ export class MovimentacaoAddEditDialogComponent {
         .subscribe();
     }
 
+    compareFunction(o1: any, o2: any) {
+      return o1.name == o2.name && o1.id == o2.id;
+    }
+
     salvar(){
       console.log(this.formulario)
       this._movimentacoesService.adicionarMovimentacao(this.formulario.value).subscribe(resultado => {
         console.log(resultado)
         if(resultado){
-          this._snackBar.open("Movimentação adicionada com sucesso!", "Fechar", {
+          this._snackBar.open("Movimentação salva", "Fechar", {
             duration: 2000,
             verticalPosition: 'bottom',
             panelClass: 'notify-successful'
@@ -88,6 +94,10 @@ export class MovimentacaoAddEditDialogComponent {
 
     cancelar(){
       this._dialogRef.close();
+    }
+
+    getTipoMovimentacao(){
+      return buscarPorChave(this.formulario.get('tipo')?.value);
     }
 }
 

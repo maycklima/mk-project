@@ -54,13 +54,13 @@ export class MovimentacoesComponent implements OnInit {
   }
 
   
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string, tipo: string): void {
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string, movimentacao:any): void {
     const dialogRef = this.dialog.open(MovimentacaoAddEditDialogComponent, {
       width: '520px',
       height: '400px',
       enterAnimationDuration,
       exitAnimationDuration,
-      data: { tipo: tipo }
+      data: movimentacao 
     });
 
     dialogRef.afterClosed().subscribe(result => {

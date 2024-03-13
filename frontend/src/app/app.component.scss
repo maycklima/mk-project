@@ -27,3 +27,17 @@ app-footbar {
   width: 100%;
   z-index: 1000; /* Garante que fique sobreposto a outros elementos */
 }
+
+.example-container {
+  width: 100%;
+  height: 100%;
+}
+
+mat-drawer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-center;
+}
+mat-drawer {
+  width: 12%;
+}

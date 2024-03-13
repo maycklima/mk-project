@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MaterialModule } from '../../shared/material.module';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -10,8 +10,13 @@ import { HttpClientModule } from '@angular/common/http';
   styleUrl: './topmenubar.component.scss'
 })
 export class TopmenubarComponent {
-  irParaHome(){
-    
+
+  @Output() toggleMenu = new EventEmitter<string>();
+
+  setToggleMenu(){
+    console.log('oi')
+    this.toggleMenu.emit();
   }
+
 
 }

@@ -34,10 +34,10 @@
       </div>
       <div class="movimentacoes">
         <div class="itens" *ngFor="let movimentacao of categoriaAgrupada.itens" fxLayout="row" fxLayoutAlign="center center">
-          <div fxFlex="45" fxLayoutAlign="start center" style="color: green; font-weight: bold;" *ngIf=" movimentacao.tipo === 'ENTRADA'"  (click)="openDialog('250ms', '250ms', 'null')">{{ movimentacao.descricao }}</div>
-          <div fxFlex="45" fxLayoutAlign="start center" *ngIf=" movimentacao.tipo === 'SAIDA'" (click)="openDialog('250ms', '250ms', 'null')">{{ movimentacao.descricao }}</div>
-          <div fxFlex="20" fxLayoutAlign="start center" style="color: green; font-weight: bold;" *ngIf=" movimentacao.tipo === 'ENTRADA'"  (click)="openDialog('250ms', '250ms', 'null')">{{ formatarMoeda(movimentacao.valor) }}</div>
-          <div fxFlex="20" fxLayoutAlign="start center" *ngIf=" movimentacao.tipo === 'SAIDA'"  (click)="openDialog('250ms', '250ms', 'null')">{{ formatarMoeda(movimentacao.valor) }}</div>
+          <div fxFlex="45" fxLayoutAlign="start center" style="color: green; font-weight: bold;" *ngIf="movimentacao.tipo === 'ENTRADA'"  (click)="openDialog('250ms', '250ms', movimentacao)">{{ movimentacao.descricao }}</div>
+          <div fxFlex="45" fxLayoutAlign="start center" *ngIf=" movimentacao.tipo === 'SAIDA'" (click)="openDialog('250ms', '250ms', movimentacao)">{{ movimentacao.descricao }}</div>
+          <div fxFlex="20" fxLayoutAlign="start center" style="color: green; font-weight: bold;" *ngIf=" movimentacao.tipo === 'ENTRADA'"  (click)="openDialog('250ms', '250ms', movimentacao)">{{ formatarMoeda(movimentacao.valor) }}</div>
+          <div fxFlex="20" fxLayoutAlign="start center" *ngIf=" movimentacao.tipo === 'SAIDA'"  (click)="openDialog('250ms', '250ms', movimentacao)">{{ formatarMoeda(movimentacao.valor) }}</div>
           <div fxFlex="5" fxLayoutAlign="center center" (click)="testeClick(movimentacao)">
             <mat-icon style="color: green;" *ngIf="movimentacao.pago === true">thumb_up_alt</mat-icon>
             <mat-icon style="color: grey;" *ngIf="movimentacao.pago === false">thumb_down_alt</mat-icon>
