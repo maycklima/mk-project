@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, Output } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MaterialModule } from '../../../shared/material.module';
 import { CommonModule } from '@angular/common';
 import { CategoriaService } from '../../categoria/categoria.service';
@@ -6,19 +6,18 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { tap } from 'rxjs';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { MovimentacoesService } from '../movimentacoes/movimentacoes.service';
-import { buscarPorChave } from '../model/TipoMovimentacao';
+import { AtividadeService } from '../container/atividade-index.service';
 
 @Component({
-  selector: 'app-movimentacao-add-edit-dialog',
+  selector: 'app-atividade-add-edit-dialog',
   standalone: true,
   imports: [MaterialModule, CommonModule],
-  templateUrl: './movimentacao-add-edit-dialog.component.html',
-  styleUrl: './movimentacao-add-edit-dialog.component.scss'
+  templateUrl: './atividade-add-edit-dialog.component.html',
+  styleUrl: './atividade-add-edit-dialog.component.scss'
 })
 
 
-export class MovimentacaoAddEditDialogComponent {
+export class AtividadeAddEditDialogComponent {
   
   formulario!: FormGroup;
   categorias: any;
@@ -27,8 +26,8 @@ export class MovimentacaoAddEditDialogComponent {
     private _formBuilder: FormBuilder, 
     private _snackBar: MatSnackBar,
     private _categoriaService: CategoriaService,
-    private _dialogRef: MatDialogRef<MovimentacaoAddEditDialogComponent>,
-    private _movimentacoesService: MovimentacoesService,
+    private _dialogRef: MatDialogRef<AtividadeAddEditDialogComponent>,
+    private _atividadeService: AtividadeService,
     @Inject(MAT_DIALOG_DATA) public data: any){}
   
     ngOnInit() {
@@ -79,10 +78,10 @@ export class MovimentacaoAddEditDialogComponent {
 
     salvar(){
       console.log(this.formulario)
-      this._movimentacoesService.adicionarMovimentacao(this.formulario.value).subscribe(resultado => {
+      this._atividadeService.adicionarAtividade(this.formulario.value).subscribe(resultado => {
         console.log(resultado)
         if(resultado){
-          this._snackBar.open("Movimentação salva", "Fechar", {
+          this._snackBar.open("Atividade salva", "Fechar", {
             duration: 2000,
             verticalPosition: 'bottom',
             panelClass: 'notify-successful'
@@ -96,8 +95,8 @@ export class MovimentacaoAddEditDialogComponent {
       this._dialogRef.close();
     }
 
-    getTipoMovimentacao(){
-      return buscarPorChave(this.formulario.get('tipo')?.value);
+    alterarFeito(form: FormGroup){
+      console.log(form);
     }
 }
 

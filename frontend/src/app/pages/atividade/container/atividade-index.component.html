@@ -1,0 +1,53 @@
+<mat-card class="card">
+  <div class="cabecalho" fxLayout="row" fxLayoutAlign="center center" >
+    <div fxFlex="20">
+    </div>
+
+    <div fxFlex="60" fxLayoutAlign="center center" style="font-size: 1.2em;">
+      <mat-icon (click)="mesAnterior()" class="icone-mes-anterior-proximo" >keyboard_arrow_left</mat-icon>
+      {{nomeMes}} de {{ano}}
+      <mat-icon (click)="proximoMes()" class="icone-mes-anterior-proximo">keyboard_arrow_right</mat-icon>
+    </div>
+
+    <div fxFlex="20" fxLayoutAlign="center center" >
+      <strong>Adicionar</strong>
+      <button [matMenuTriggerFor]="menu" mat-fab color="primary" class="mat-fab-adicionar">
+        <mat-icon>add</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu" >
+        <button mat-menu-item (click)="openDialog('250ms', '250ms', 'ENTRADA')">
+          <span>Atividade</span>
+        </button>
+        <button mat-menu-item (click)="openDialog('250ms', '250ms', 'SAIDA')">
+          <span>Categoria</span>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+
+  <div fxLayout="column" fxLayoutAlign="center start">
+    <div *ngFor="let categoriaAgrupada of atividades" fxLayout="column" fxLayoutAlign="center center" class="categorias">
+      <div class="titulo" fxLayout="column" fxLayoutAlign="center center">
+        <strong>{{ categoriaAgrupada.categoria.descricao }}</strong>
+      </div>
+      <div class="movimentacoes">
+        <div class="itens" *ngFor="let atividade of categoriaAgrupada.itens" fxLayout="row" fxLayoutAlign="center center">
+          <div fxFlex="45" fxLayoutAlign="center center"  (click)="openDialog('250ms', '250ms', atividade)">{{ atividade.descricao }}</div>
+          <div fxFlex="5" fxLayoutAlign="center center" (click)="testeClick(atividade)">
+            <mat-icon style="color: green;" *ngIf="atividade.feito === true">thumb_up_alt</mat-icon>
+            <mat-icon style="color: grey;" *ngIf="atividade.feito === false">thumb_down_alt</mat-icon>
+          </div>
+        </div>
+      </div>
+      <br>
+    </div>
+    
+    <div class="movimentacoes-empty" fxLayout="column" fxLayoutAlign="center end" *ngIf="this.atividades?.length === 0">
+      <div> Nenhuma movimentação encontrada </div>
+    </div>
+    <mat-card class="fixo" fxLayout="column" fxLayoutAlign="center end" *ngIf="this.atividades?.length > 0">
+      <!-- <div> Total entrada: {{totalEntrada | currency : 'BRL' : ''}}</div>
+      <div> Total saída: {{totalSaida | currency : 'BRL' : ''}}</div> -->
+    </mat-card>
+  </div>
+</mat-card>

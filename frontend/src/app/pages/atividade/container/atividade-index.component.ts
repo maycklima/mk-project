@@ -1,36 +1,30 @@
-import { DataSource } from '@angular/cdk/collections';
-import { HttpClientModule } from '@angular/common/http';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { Observable, ReplaySubject, tap } from 'rxjs';
-import { MovimentacoesService } from './movimentacoes.service';
+import { tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
-import { MovimentacaoAddEditDialogComponent } from '../movimentacao-add-edit-dialog/movimentacao-add-edit-dialog.component';
 import { MaterialModule } from '../../../shared/material.module';
+import { AtividadeService } from './atividade-index.service';
+import { AtividadeAddEditDialogComponent } from '../atividade-add-edit-dialog/atividade-add-edit-dialog.component';
 
 @Component({
-  selector: 'app-movimentacoes',
+  selector: 'app-atividade-index',
   standalone: true,
-  templateUrl: './movimentacoes.component.html',
-  styleUrls: ['./movimentacoes.component.scss'],
+  templateUrl: './atividade-index.component.html',
+  styleUrls: ['./atividade-index.component.scss'],
   imports: [MaterialModule, CommonModule]
 })
 
-export class MovimentacoesComponent implements OnInit {
+export class AtividadeIndexComponent implements OnInit {
 
 
   formulario!: FormGroup;
   usuario: any;
   lojas:any;
   usuarioFormulario: any;
-  movimentacoes: any;
-  totalEntrada: any;
-  totalSaida: any;
-  totalEntradaPago: any;
-  totalSaidaPago: any;
+  atividades: any;
   dataAtual: Date = new Date();
   nomeMes: any;
   ano: any;
@@ -39,12 +33,12 @@ export class MovimentacoesComponent implements OnInit {
   private router: Router,
   private _formBuilder: FormBuilder, 
   private _snackBar: MatSnackBar,
-  private _movimentacoesService: MovimentacoesService,
+  private _atividadeService: AtividadeService,
   public dialog: MatDialog){}
 
   ngOnInit() {
   this.inicializarFormulario();
-  this.getMovimentacoes();
+  this.getAtividades();
   }
   
   inicializarFormulario(){
@@ -54,27 +48,27 @@ export class MovimentacoesComponent implements OnInit {
   }
 
   
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string, movimentacao:any): void {
-    const dialogRef = this.dialog.open(MovimentacaoAddEditDialogComponent, {
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string, atividade:any): void {
+    const dialogRef = this.dialog.open(AtividadeAddEditDialogComponent, {
       width: '520px',
       height: '400px',
       enterAnimationDuration,
       exitAnimationDuration,
-      data: movimentacao 
+      data: atividade 
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.getMovimentacoes();
+      this.getAtividades();
     });
   }
 
-  testeClick(movimentacao:any) {
-   console.log(movimentacao)
-   console.log(movimentacao)
+  testeClick(atividade:any) {
+   console.log(atividade)
+   console.log(atividade)
 
-   movimentacao.pago = !movimentacao.pago
+   atividade.feito = !atividade.feito
 
-   this._movimentacoesService.atualizarMovimentacao(movimentacao).subscribe(resultado => {
+   this._atividadeService.atualizarAtividade(atividade).subscribe(resultado => {
     console.log(resultado)
     if(resultado){
       this._snackBar.open("Item atualizado com sucesso!", "Fechar", {
@@ -84,46 +78,29 @@ export class MovimentacoesComponent implements OnInit {
     });
     }
 
-    this.getMovimentacoes();
+    this.getAtividades();
   });
   }
   
 
-getMovimentacoes(): void {
+getAtividades(): void {
   const nomeMesCompleto = this.dataAtual.toLocaleString('pt-BR', { month: 'long' });
   this.nomeMes = nomeMesCompleto.charAt(0).toUpperCase() + nomeMesCompleto.slice(1);
   this.ano = this.dataAtual.getFullYear();
 
   console.log('this.dataAtual')
   console.log( this.dataAtual)
-  let movimentacaoFilter = {mesMovimentacao: (this.dataAtual.getMonth() + 1).toString(), anoMovimentacao: this.ano.toString(), ordeBy: 'ASC'}
-  this._movimentacoesService.getMovimentacoes(movimentacaoFilter)
+  let atividadeFilter = {mes: (this.dataAtual.getMonth() + 1).toString(), ano: this.ano.toString(), ordeBy: 'ASC'}
+  this._atividadeService.getAtividades(atividadeFilter)
     .pipe(
       tap({
         next: (data) => {
           console.log(data);
-          this.totalEntrada = data
-          .filter((movimentacao: { tipo: string;}) => movimentacao.tipo === 'ENTRADA')
-          .reduce((total: any, movimentacao: { valor: any; }) => total + movimentacao.valor, 0);
-
-          this.totalEntradaPago = data
-          .filter((movimentacao: { tipo: string; pago:boolean }) => movimentacao.tipo === 'ENTRADA' && movimentacao.pago === true)
-          .reduce((total: any, movimentacao: { valor: any; }) => total + movimentacao.valor, 0);
-
-          this.totalSaida = data
-          .filter((movimentacao: { tipo: string; }) => movimentacao.tipo === 'SAIDA')
-          .reduce((total: any, movimentacao: { valor: any; }) => total + movimentacao.valor, 0);
-
-          this.totalSaidaPago = data
-          .filter((movimentacao: { tipo: string; pago:boolean  }) => movimentacao.tipo === 'SAIDA' && movimentacao.pago === true)
-          .reduce((total: any, movimentacao: { valor: any; }) => total + movimentacao.valor, 0);
-
-
-          this.movimentacoes = this.gruparMovimentacoesPorCategoria(data);
-          console.log(this.movimentacoes)// Adiciona os dados recebidos à variável dataToDisplay
+          this.atividades = this.gruparAtividadesPorCategoria(data);
+          console.log(this.atividades)// Adiciona os dados recebidos à variável dataToDisplay
         },
         error: (error) => {
-          console.error('Erro ao obter as movimentações:', error);
+          console.error('Erro ao obter as atividades:', error);
         }
       })
     )
@@ -136,7 +113,7 @@ proximoMes(){
   this.atualizaNomeMes(this.dataAtual);
   this.atualizaAno(this.dataAtual);
   console.log(this.dataAtual)
-  this.getMovimentacoes();
+  this.getAtividades();
 }
 
 atualizaNomeMes(data: Date) {
@@ -152,10 +129,10 @@ mesAnterior(){
   this.dataAtual.setMonth(nextMes.getMonth() - 1);
   this.atualizaNomeMes(this.dataAtual);
   this.atualizaAno(this.dataAtual);
-  this.getMovimentacoes();
+  this.getAtividades();
 }
 
-gruparMovimentacoesPorCategoria(movimentacoes: any[]): CategoriaAgrupada[] {
+gruparAtividadesPorCategoria(movimentacoes: any[]): CategoriaAgrupada[] {
   const categoriasAgrupadas: CategoriaAgrupada[] = [];
 
   // Agrupar as movimentações por categoria
@@ -186,7 +163,7 @@ calcularTotal(itens: any[]): number {
 }
 
 getExisteMovimentacoes(){
- return this.movimentacoes.length === 0
+ return this.atividades.length === 0
 }
 
   entrar(){
@@ -201,10 +178,6 @@ getExisteMovimentacoes(){
       //     this._snackBar.open("Usuário não encontrado", "Fechar");
       //   }
       // });
-    }
-
-    formatarMoeda(valor: number): string {
-      return  valor.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
     }
 }
 

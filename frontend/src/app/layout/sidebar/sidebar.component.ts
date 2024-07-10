@@ -12,7 +12,7 @@ import { MatListModule } from '@angular/material/list';
 export class SidebarComponent {
 
   listMenus = [     
-      'Movimentações',
+      'Atividades',
       'Contas',
       'Cartões',
       'Categorias',

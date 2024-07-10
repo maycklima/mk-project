@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TopmenubarComponent } from './layout/topmenubar/topmenubar.component';
-import { HttpClientModule } from '@angular/common/http';
 import { FootbarComponent } from './layout/footbar/footbar.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatFormFieldModule } from '@angular/material/form-field';

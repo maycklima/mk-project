@@ -3,14 +3,14 @@ package com.backend.movimentacao.model;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
-
 @Data
 @Component
-public class MovimentacaoFilter {
+public class AtividadeFilter {
 
-    private String mesMovimentacao;
-    private String anoMovimentacao;
+    private String mes;
+    
+    private String ano;
+
     private String orderBy;
 
 }

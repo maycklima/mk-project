@@ -14,8 +14,8 @@ getCategorias(): Observable<any> {
 }
 
 // Exemplo de método para adicionar uma nova movimentação no backend
-adicionarMovimentacao(movimentacao: any): Observable<any> {
-  return this.http.post<any>('http://localhost:8080/api/categorias', movimentacao);
+adicionarCategoria(categoria: any): Observable<any> {
+  return this.http.post<any>('http://localhost:8080/api/categorias', categoria);
 }
 
 }
