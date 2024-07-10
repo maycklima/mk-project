@@ -162,7 +162,7 @@ calcularTotal(itens: any[]): number {
   return itens.reduce((total, movimentacao) => total + movimentacao.valor, 0);
 }
 
-getExisteMovimentacoes(){
+getExisteAtividades(){
  return this.atividades.length === 0
 }
 
