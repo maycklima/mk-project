@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk-alpine
+FROM openjdk:21-slim
 RUN mkdir /app
 WORKDIR /app
 COPY target/*.jar /app/app.jar
