@@ -16,6 +16,12 @@
 	<name>MK - Backend</name>
 	<description>Projeto Back End</description>
 	<dependencies>
+
+	    <dependency>
+            <groupId>com</groupId>
+            <artifactId>frontend</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
