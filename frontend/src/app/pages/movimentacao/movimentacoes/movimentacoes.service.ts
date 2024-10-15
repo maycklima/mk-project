@@ -6,22 +6,22 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AtividadeService {
+export class MovimentacoesService {
 
 constructor(private http: HttpClient) { }
 
-getAtividades(atividadeFilter: any): Observable<any> {
-  console.log(atividadeFilter)
-  return this.http.get<any>('http://localhost:8080/atividade/atividadeBy', { params: this.prepareGetRequest(atividadeFilter) });
+getMovimentacoes(movimentacaoFilter: any): Observable<any> {
+  console.log(movimentacaoFilter)
+  return this.http.get<any>('http://localhost:8080/movimentacao/movimentacaoBy', { params: this.prepareGetRequest(movimentacaoFilter) });
 }
 
 // Exemplo de método para adicionar uma nova movimentação no backend
-adicionarAtividade(atividade: any): Observable<any> {
-  return this.http.post<any>('http://localhost:8080/atividade', atividade);
+adicionarMovimentacao(movimentacao: any): Observable<any> {
+  return this.http.post<any>('http://localhost:8080/movimentacao', movimentacao);
 }
 
-atualizarAtividade(atividade: any): Observable<any[]> {
-  return this.http.put<any[]>('http://localhost:8080/atividade', atividade);
+atualizarMovimentacao(movimentacao: any): Observable<any[]> {
+  return this.http.put<any[]>('http://localhost:8080/movimentacao', movimentacao);
 }
 
 prepareGetRequest(formValue: any): any {

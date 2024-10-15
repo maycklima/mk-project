@@ -7,7 +7,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { Observable, ReplaySubject, tap } from 'rxjs';
 import { DataSource } from '@angular/cdk/collections';
 import { HttpClientModule } from '@angular/common/http';
-import { AtividadeIndexComponent} from '../../pages/atividade/container/atividade-index.component';
+import { MovimentacoesComponent } from '../../pages/movimentacao/movimentacoes/movimentacoes.component';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +19,7 @@ import { AtividadeIndexComponent} from '../../pages/atividade/container/atividad
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
   ],
-  imports: [AtividadeIndexComponent],
+  imports: [MovimentacoesComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

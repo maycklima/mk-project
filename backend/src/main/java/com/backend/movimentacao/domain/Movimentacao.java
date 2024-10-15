@@ -4,12 +4,13 @@ import com.backend.categoria.domain.Categoria;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "TB_ATIVIDADE")
-public class Atividade {
+@Table(name = "TB_MOVIMENTACAO")
+public class Movimentacao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +23,9 @@ public class Atividade {
 
     private LocalDateTime data;
 
-    private boolean feito;
+    private BigDecimal valor;
+
+    private boolean pago;
 
     private String tipo;
 

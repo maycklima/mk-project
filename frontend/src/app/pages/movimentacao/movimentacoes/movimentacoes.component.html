@@ -1,0 +1,64 @@
+<mat-card class="card">
+  <div class="cabecalho" fxLayout="row" fxLayoutAlign="center center" >
+    <div fxFlex="20">
+    </div>
+
+    <div fxFlex="60" fxLayoutAlign="center center" style="font-size: 1.2em;">
+      <mat-icon (click)="mesAnterior()" class="icone-mes-anterior-proximo" >keyboard_arrow_left</mat-icon>
+      {{nomeMes}} de {{ano}}
+      <mat-icon (click)="proximoMes()" class="icone-mes-anterior-proximo">keyboard_arrow_right</mat-icon>
+    </div>
+
+    <div fxFlex="20" fxLayoutAlign="center center" >
+      <strong>Movimentações</strong>
+      <button [matMenuTriggerFor]="menu" mat-fab color="primary" class="mat-fab-adicionar">
+        <mat-icon>add</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu" >
+        <button mat-menu-item style="color: green;" (click)="openDialog('250ms', '250ms', 'ENTRADA')">
+          <mat-icon style="color: green;">add</mat-icon>
+          <span>Entrada</span>
+        </button>
+        <button mat-menu-item style="color: red;" (click)="openDialog('250ms', '250ms', 'SAIDA')">
+          <mat-icon style="color: red;">remove</mat-icon>
+          <span>Saída</span>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+
+  <div fxLayout="column" fxLayoutAlign="start start">
+    <div *ngFor="let categoriaAgrupada of movimentacoes" fxLayout="column" fxLayoutAlign="start start" class="categorias">
+      <div class="titulo" fxLayout="column" fxLayoutAlign="start center">
+        <strong>{{ categoriaAgrupada.categoria.descricao }}</strong>
+      </div>
+      <div class="movimentacoes">
+        <div class="itens" *ngFor="let movimentacao of categoriaAgrupada.itens" fxLayout="row" fxLayoutAlign="center center">
+          <div fxFlex="45" fxLayoutAlign="start center" style="color: green; font-weight: bold;" *ngIf="movimentacao.tipo === 'ENTRADA'"  (click)="openDialog('250ms', '250ms', movimentacao)">{{ movimentacao.descricao }}</div>
+          <div fxFlex="45" fxLayoutAlign="start center" *ngIf=" movimentacao.tipo === 'SAIDA'" (click)="openDialog('250ms', '250ms', movimentacao)">{{ movimentacao.descricao }}</div>
+          <div fxFlex="20" fxLayoutAlign="start center" style="color: green; font-weight: bold;" *ngIf=" movimentacao.tipo === 'ENTRADA'"  (click)="openDialog('250ms', '250ms', movimentacao)">{{ formatarMoeda(movimentacao.valor) }}</div>
+          <div fxFlex="20" fxLayoutAlign="start center" *ngIf=" movimentacao.tipo === 'SAIDA'"  (click)="openDialog('250ms', '250ms', movimentacao)">{{ formatarMoeda(movimentacao.valor) }}</div>
+          <div fxFlex="5" fxLayoutAlign="center center" (click)="testeClick(movimentacao)">
+            <mat-icon style="color: green;" *ngIf="movimentacao.pago === true">thumb_up_alt</mat-icon>
+            <mat-icon style="color: grey;" *ngIf="movimentacao.pago === false">thumb_down_alt</mat-icon>
+          </div>
+        </div>
+        <div fxLayout="row" class="item-total" fxLayoutAlign="center center" *ngIf="categoriaAgrupada.categoria.descricao != 'Minha conta'">
+          <div fxFlex="25" fxLayoutAlign="center center" style="font-weight: bold; font-size: 1em;">Total</div>
+          <div fxFlex="60" fxLayoutAlign="center center" style="font-weight: bold; font-size: 1em;">{{ formatarMoeda(calcularTotal(categoriaAgrupada.itens))}}</div>
+        </div>
+      </div>
+      <br>
+    </div>
+    
+    <div class="movimentacoes-empty" fxLayout="column" fxLayoutAlign="center end" *ngIf="this.movimentacoes?.length === 0">
+      <div> Nenhuma movimentação encontrada </div>
+    </div>
+    <mat-card class="fixo" fxLayout="column" fxLayoutAlign="center end" *ngIf="this.movimentacoes?.length > 0">
+      <!-- <div> Total entrada: {{totalEntrada | currency : 'BRL' : ''}}</div>
+      <div> Total saída: {{totalSaida | currency : 'BRL' : ''}}</div> -->
+      <div> Saldo atual: {{totalEntradaPago + totalSaidaPago | currency : 'BRL' : ''}}</div>
+      <div> Saldo final previsto: {{totalEntrada + totalSaida | currency : 'BRL' : ''}}</div>
+    </mat-card>
+  </div>
+</mat-card>

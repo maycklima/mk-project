@@ -1,7 +1,7 @@
 <form [formGroup]="formulario">
 <div fxLayout="column" class="card">
     <div class="titulo" fxFlex="100" fxLayoutAlign="start center">
-        <strong>Nova atividade</strong>
+        <strong>Nova movimentação de {{ getTipoMovimentacao() }}</strong>
     </div>
     <div fxFlex="100%" fxLayoutAlign="center center">
         <mat-form-field>
@@ -49,8 +49,8 @@
         </div>
     </div>
     <div fxFlex="5" fxLayoutAlign="center center">
-        <mat-icon *ngIf="formulario.get('pago')?.value === true" style="color: green;" formControlName="pago" (click)="alterarFeito(formulario)">thumb_up_alt</mat-icon>
-        <mat-icon *ngIf="formulario.get('pago')?.value === false"style="color: grey;"  formControlName="pago" (click)="alterarFeito(formulario)">thumb_down_alt</mat-icon>
+        <mat-icon *ngIf="formulario.get('pago')?.value === true" style="color: green;" formControlName="pago" (click)="alterarPago(formulario?.pago)">thumb_up_alt</mat-icon>
+        <mat-icon *ngIf="formulario.get('pago')?.value === false"style="color: grey;"  formControlName="pago" (click)="alterarPago(formulario?.pago)">thumb_down_alt</mat-icon>
     </div>
     <div class="form" fxLayout="row" fxLayoutAlign="end end">
         <button mat-button mat-raised-button (click)="cancelar()">Cancelar</button>
