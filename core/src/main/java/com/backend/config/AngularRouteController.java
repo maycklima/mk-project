@@ -13,10 +13,10 @@ public class AngularRouteController implements ErrorController {
 
     @RequestMapping(
         method = {RequestMethod.OPTIONS, RequestMethod.GET},
-        path = {"/frontend",
-            "/frontend/{route:^\\w[\\w-]+}",
-            "/frontend/{route:^(?!assets)\\w[\\w-]+}/**"})
-    public String forwardFrontend() {
-        return "forward:/frontend/index.html";
+        path = {"/ui",
+            "/ui/{route:^\\w[\\w-]+}",
+            "/ui/{route:^(?!assets)\\w[\\w-]+}/**"})
+    public String forwardUI() {
+        return "forward:/ui/index.html";
     }
 }

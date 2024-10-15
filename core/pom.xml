@@ -11,15 +11,15 @@
 	</parent>
 
 	<groupId>com</groupId>
-	<artifactId>backend</artifactId>
+	<artifactId>core</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>MK - Backend</name>
+	<name>MK - Core</name>
 	<description>Projeto Back End</description>
 	<dependencies>
 
 	    <dependency>
             <groupId>com</groupId>
-            <artifactId>frontend</artifactId>
+            <artifactId>ui</artifactId>
             <version>${project.version}</version>
         </dependency>
 		<dependency>

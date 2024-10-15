@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { TopmenubarComponent } from './layout/topmenubar/topmenubar.component';
-import { HttpClientModule } from '@angular/common/http';
-import { FootbarComponent } from './layout/footbar/footbar.component';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { RouterOutlet } from '@angular/router';
+import { FootbarComponent } from './layout/footbar/footbar.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
+import { TopmenubarComponent } from './layout/topmenubar/topmenubar.component';
 
 @Component({
   selector: 'app-root',
@@ -17,5 +16,5 @@ import { SidebarComponent } from './layout/sidebar/sidebar.component';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'frontend';
+  title = 'ui';
 }
