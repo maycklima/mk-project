@@ -1,4 +1,4 @@
-package com.backend.config;
+package com.backend.configuration;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.web.bind.annotation.RequestMapping;
