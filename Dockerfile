@@ -1,5 +1,5 @@
-FROM openjdk:21-slim
+FROM openjdk:21-jdk
 RUN mkdir /app
 WORKDIR /app
-COPY ui/target/*.jar /app/app.jar
+COPY core/target/*.jar /app/app.jar
 CMD ["java","-jar","/app/app.jar"]
