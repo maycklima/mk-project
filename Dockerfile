@@ -8,5 +8,5 @@ COPY . .
 
 RUN mvn clean install
 
-COPY COPY --from=build /app/core/target/*.jar /app/app.jar
+COPY --from=build /app/core/target/*.jar /app/app.jar
 CMD ["java","-jar","/app/app.jar"]
