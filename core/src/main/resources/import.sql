@@ -10,7 +10,7 @@ insert into tb_categoria (descricao) values ('Inter');
 insert into tb_categoria (descricao) values ('Gastos Débitos');
 
 --FIXO
-insert into tb_movimentacao (descricao, valor, pago, categoria_id, data, tipo, data_inclusao) values ('Salário',   10000, FALSE, 7, '2024-10-01', 'ENTRADA', '2024-02-27');
+insert into tb_movimentacao (descricao, valor, pago, categoria_id, data, tipo, data_inclusao) values ('Salário',   5000, FALSE, 7, '2024-10-01', 'ENTRADA', '2024-02-27');
 
 insert into tb_movimentacao (descricao, valor, pago, categoria_id, data, tipo, data_inclusao) values ('Energia',   -195.90, FALSE, 1, '2024-10-01', 'SAIDA', '2024-02-27');
 insert into tb_movimentacao (descricao, valor, pago, categoria_id, data, tipo, data_inclusao) values ('Água',      -88.19,  FALSE, 1, '2024-10-01', 'SAIDA', '2024-02-26');
