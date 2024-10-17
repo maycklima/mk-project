@@ -55,6 +55,11 @@
     visibility: hidden; /* Torna o ícone invisível mas mantém o espaço ocupado */
     pointer-events: none; /* Impede interações do mouse, incluindo hover */
   }
+
+  .active-link {
+    margin-bottom: 10px; /* Ajuste para a margem que você desejar */
+  }
+  
   
 
 

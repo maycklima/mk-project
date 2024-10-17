@@ -12,25 +12,44 @@
 
   </div>
 
-
-   <!-- Centered content -->
-   <div class="centered-icons">
+  <div class="centered-icons">
     <nav class="menu-items">
-      <a mat-button routerLink="/overview" aria-label="Visão Geral">dashboards</a>
-      <a mat-button routerLink="/lancamentos" aria-label="Lançamentos">gastos</a>
-      <a mat-button routerLink="/relatorios" aria-label="Relatórios">relatórios</a>
+      <a
+        mat-button
+        (click)="navigateTo('/dashboard')"
+        routerLinkActive="active-link"
+        aria-label="Visão Geral"
+      >
+        dashboards
+      </a>
+      <a
+        mat-button
+        (click)="navigateTo('/gastos')"
+        routerLinkActive="active-link"
+        aria-label="Lançamentos"
+      >
+        meus gastos
+      </a>
+      <a
+        mat-button
+        (click)="navigateTo('/relatorios')" 
+        routerLinkActive="active-link"
+        aria-label="Relatórios"
+      >
+        relatórios
+      </a>
     </nav>
   </div>
 
   <!-- Right-aligned icons -->
   <div class="right-icons">
-    <button mat-icon-button class="example-icon" aria-label="Settings">
+    <button mat-icon-button class="example-icon" (click)="navigateTo('/configuracoes')" aria-label="Settings">
       <mat-icon>settings</mat-icon>
     </button>
     <button mat-icon-button class="example-icon" aria-label="Notifications">
       <mat-icon>notifications</mat-icon>
     </button>
-    <button mat-icon-button class="example-icon" aria-label="Account">
+    <button mat-icon-button class="example-icon" (click)="navigateTo('/minha-conta')" aria-label="Account">
       <mat-icon>account_circle</mat-icon>
     </button>
   </div>

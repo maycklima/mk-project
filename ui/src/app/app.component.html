@@ -1,7 +1,7 @@
 
 <mat-drawer-container class="example-container" [hasBackdrop]="true">
 <mat-drawer #drawer mode="push">
-    <app-sidebar></app-sidebar>
+    <app-sidebar (closeDrawer)="drawer.close()"></app-sidebar>
 </mat-drawer>
 <mat-drawer-content>
     <app-topmenubar (toggleMenu)="drawer.toggle()"></app-topmenubar>

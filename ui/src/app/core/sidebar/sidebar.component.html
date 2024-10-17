@@ -1,14 +1,23 @@
 <div class="container">
-<div class="perfil">
-    <div class="avatar">
-        <img src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg" alt="User Avatar">
+    <div class="perfil">
+        <div class="avatar">
+            <img src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg" alt="User Avatar">
+        </div>
     </div>
-</div>
-<div>
-    <mat-list role="list">
-        @for (menu of listMenus; track menu) {
-            <mat-list-item role="listitem">{{menu}}</mat-list-item>
-            }
-    </mat-list>
-</div>
+    <div>
+      <mat-list>
+        <mat-list-item (click)="navigateTo('/contas')" class="list-item">
+          <span>Contas</span>
+        </mat-list-item>
+        <mat-list-item (click)="navigateTo('/cartoes')" class="list-item">
+          <span>Cartões</span>
+        </mat-list-item>
+        <mat-list-item (click)="navigateTo('/categorias')" class="list-item">
+          <span>Categorias</span>
+        </mat-list-item>
+        <mat-list-item (click)="navigateTo('/configuracoes')" class="list-item">
+          <span>Configurações</span>
+        </mat-list-item>
+      </mat-list>
+    </div>
 </div>
