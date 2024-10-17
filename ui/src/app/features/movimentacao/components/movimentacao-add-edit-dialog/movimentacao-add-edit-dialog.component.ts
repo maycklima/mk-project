@@ -82,11 +82,12 @@ export class MovimentacaoAddEditDialogComponent {
     this._movimentacoesService.adicionarMovimentacao(this.formulario.value).subscribe(resultado => {
       console.log(resultado)
       if (resultado) {
-        this._snackBar.open("Movimentação salva", "Fechar", {
-          duration: 2000,
-          verticalPosition: 'bottom',
-          panelClass: 'notify-successful'
-        });
+        // this._snackBar.open("Movimentação salva", "Fechar", {
+        //   duration: 2000,
+        //   verticalPosition: 'bottom',
+        //   horizontalPosition: 'right',
+        //   panelClass: 'notify-successful'
+        // });
         this._dialogRef.close();
       }
     });
