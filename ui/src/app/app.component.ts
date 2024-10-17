@@ -4,9 +4,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
-import { FootbarComponent } from './layout/footbar/footbar.component';
-import { SidebarComponent } from './layout/sidebar/sidebar.component';
-import { TopmenubarComponent } from './layout/topmenubar/topmenubar.component';
+import { FootbarComponent } from './core/footbar/footbar.component';
+import { SidebarComponent } from './core/sidebar/sidebar.component';
+import { TopmenubarComponent } from './core/topmenubar/topmenubar.component';
 
 @Component({
   selector: 'app-root',

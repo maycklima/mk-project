@@ -1,15 +1,13 @@
-import { DataSource } from '@angular/cdk/collections';
-import { HttpClientModule } from '@angular/common/http';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { Observable, ReplaySubject, tap } from 'rxjs';
-import { MovimentacoesService } from './movimentacoes.service';
-import { CommonModule } from '@angular/common';
-import { MatDialog } from '@angular/material/dialog';
-import { MovimentacaoAddEditDialogComponent } from '../movimentacao-add-edit-dialog/movimentacao-add-edit-dialog.component';
-import { MaterialModule } from '../../../shared/material.module';
+import { tap } from 'rxjs';
+import { MaterialModule } from 'src/app/shared/material.module';
+import { MovimentacaoAddEditDialogComponent } from '../../components/movimentacao-add-edit-dialog/movimentacao-add-edit-dialog.component';
+import { MovimentacoesService } from '../../services/movimentacoes.service';
 
 @Component({
   selector: 'app-movimentacoes',
@@ -36,10 +34,10 @@ export class MovimentacoesComponent implements OnInit {
   ano: any;
 
   constructor(
-  private router: Router,
-  private _formBuilder: FormBuilder, 
-  private _snackBar: MatSnackBar,
-  private _movimentacoesService: MovimentacoesService,
+  private readonly router: Router,
+  private readonly _formBuilder: FormBuilder, 
+  private readonly _snackBar: MatSnackBar,
+  private readonly _movimentacoesService: MovimentacoesService,
   public dialog: MatDialog){}
 
   ngOnInit() {

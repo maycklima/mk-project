@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { MaterialModule } from '../../shared/material.module';
-import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-topmenubar',

@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/enviroments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,16 +13,16 @@ constructor(private readonly http: HttpClient) { }
 
 getMovimentacoes(movimentacaoFilter: any): Observable<any> {
   console.log(movimentacaoFilter)
-  return this.http.get<any>('/movimentacao/movimentacaoBy', { params: this.prepareGetRequest(movimentacaoFilter) });
+  return this.http.get<any>(`${environment.apiUrl}/movimentacao/movimentacaoBy`, { params: this.prepareGetRequest(movimentacaoFilter) });
 }
 
 // Exemplo de método para adicionar uma nova movimentação no backend
 adicionarMovimentacao(movimentacao: any): Observable<any> {
-  return this.http.post<any>('/movimentacao', movimentacao);
+  return this.http.post<any>(`${environment.apiUrl}/movimentacao`, movimentacao);
 }
 
 atualizarMovimentacao(movimentacao: any): Observable<any[]> {
-  return this.http.put<any[]>('/movimentacao', movimentacao);
+  return this.http.put<any[]>(`${environment.apiUrl}/movimentacao`, movimentacao);
 }
 
 prepareGetRequest(formValue: any): any {
@@ -45,5 +46,4 @@ dateToIsoStr(value: Date) {
   }
   return new DatePipe('pt-BR').transform(value, 'yyyy-MM-dd');
 }
-
 }

@@ -4,10 +4,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { tap } from 'rxjs';
-import { MaterialModule } from '../../../shared/material.module';
-import { CategoriaService } from '../../categoria/categoria.service';
-import { buscarPorChave } from '../model/TipoMovimentacao';
-import { MovimentacoesService } from '../movimentacoes/movimentacoes.service';
+import { CategoriaService } from 'src/app/features/categoria/services/categoria.service';
+import { MaterialModule } from 'src/app/shared/material.module';
+import { buscarPorChave } from '../../services/model/TipoMovimentacao';
+import { MovimentacoesService } from '../../services/movimentacoes.service';
 
 @Component({
   selector: 'app-movimentacao-add-edit-dialog',

@@ -1,13 +1,6 @@
-import { Component } from '@angular/core';
-import { MaterialModule } from '../../shared/material.module';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Observable, ReplaySubject, tap } from 'rxjs';
-import { DataSource } from '@angular/cdk/collections';
-import { HttpClientModule } from '@angular/common/http';
-import { MovimentacoesComponent } from '../../pages/movimentacao/movimentacoes/movimentacoes.component';
+import { Component } from '@angular/core';
+import { MovimentacoesComponent } from 'src/app/features/movimentacao/containers/index/movimentacoes.component';
 
 @Component({
   selector: 'app-home',
