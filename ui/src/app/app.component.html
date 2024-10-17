@@ -1,16 +1,14 @@
 
-<!-- <app-footbar></app-footbar> -->
-
-<mat-drawer-container class="example-container" [hasBackdrop]="false">
-    <mat-drawer #drawer mode="side">
-        <app-sidebar></app-sidebar>
-    </mat-drawer>
-    <mat-drawer-content>
-        <app-topmenubar (toggleMenu)="drawer.toggle()"></app-topmenubar>
-        <div class="container-card" >
-            <div class="conteudo-card">
-                <router-outlet></router-outlet> 
-            </div>
+<mat-drawer-container class="example-container" [hasBackdrop]="true">
+<mat-drawer #drawer mode="push">
+    <app-sidebar></app-sidebar>
+</mat-drawer>
+<mat-drawer-content>
+    <app-topmenubar (toggleMenu)="drawer.toggle()"></app-topmenubar>
+    <div class="container-card" >
+        <div class="conteudo-card">
+            <router-outlet></router-outlet> 
         </div>
-    </mat-drawer-content>
-  </mat-drawer-container>
+    </div>
+</mat-drawer-content>
+</mat-drawer-container>

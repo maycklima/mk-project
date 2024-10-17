@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MovimentacaoAddEditDialogComponent } from './movimentacao-add-edit-dialog.component';
+import { MovimentacaoAddEditDialogComponent } from './movimentacao-add-edit.component';
 
 describe('MovimentacaoAddEditDialogComponent', () => {
   let component: MovimentacaoAddEditDialogComponent;

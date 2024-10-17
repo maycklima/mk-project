@@ -6,7 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
 import { MaterialModule } from 'src/app/shared/material.module';
-import { MovimentacaoAddEditDialogComponent } from '../../components/movimentacao-add-edit-dialog/movimentacao-add-edit-dialog.component';
+import { MovimentacaoAddEditDialogComponent } from '../../components/movimentacao-add-edit/movimentacao-add-edit.component';
 import { MovimentacoesService } from '../../services/movimentacoes.service';
 
 @Component({
@@ -55,7 +55,7 @@ export class MovimentacoesComponent implements OnInit {
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string, movimentacao:any): void {
     const dialogRef = this.dialog.open(MovimentacaoAddEditDialogComponent, {
       width: '520px',
-      height: '400px',
+      height: '450px',
       enterAnimationDuration,
       exitAnimationDuration,
       data: movimentacao 

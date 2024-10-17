@@ -47,10 +47,10 @@
         </mat-select>
         </mat-form-field>
         </div>
-    </div>
-    <div fxFlex="5" fxLayoutAlign="center center">
-        <mat-icon *ngIf="formulario.get('pago')?.value === true" style="color: green;" formControlName="pago" (click)="alterarPago(true)">thumb_up_alt</mat-icon>
-        <mat-icon *ngIf="formulario.get('pago')?.value === false"style="color: grey;"  formControlName="pago" (click)="alterarPago(false)">thumb_down_alt</mat-icon>
+        <div fxFlex="5" fxLayoutAlign="center center">
+            <mat-icon *ngIf="formulario.get('pago')?.value === true" style="color: green;" formControlName="pago" (click)="alterarPago(true)">thumb_up_alt</mat-icon>
+            <mat-icon *ngIf="formulario.get('pago')?.value === false"style="color: grey;"  formControlName="pago" (click)="alterarPago(false)">thumb_down_alt</mat-icon>
+        </div>
     </div>
     <div class="form" fxLayout="row" fxLayoutAlign="end end">
         <button mat-button mat-raised-button (click)="cancelar()">Cancelar</button>

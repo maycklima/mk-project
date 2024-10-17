@@ -1,12 +1,37 @@
 <mat-toolbar class="container">
-    <button class="square-button" (click)="setToggleMenu()" aria-label="Example icon-button with menu icon"> 
+
+  <div class="left-icons">
+    <!-- Menu button aligned to the left -->
+    <button mat-icon-button class="example-icon" (click)="setToggleMenu()" aria-label="Menu">
       <mat-icon>menu</mat-icon>
     </button>
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>favorite</mat-icon>
+    <button mat-icon-button class="invisible-icons"aria-label="Menu">
     </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>share</mat-icon>
+    <button mat-icon-button class="invisible-icons" aria-label="Menu">
     </button>
-  </mat-toolbar>
+
+  </div>
+
+
+   <!-- Centered content -->
+   <div class="centered-icons">
+    <nav class="menu-items">
+      <a mat-button routerLink="/overview" aria-label="Visão Geral">dashboards</a>
+      <a mat-button routerLink="/lancamentos" aria-label="Lançamentos">gastos</a>
+      <a mat-button routerLink="/relatorios" aria-label="Relatórios">relatórios</a>
+    </nav>
+  </div>
+
+  <!-- Right-aligned icons -->
+  <div class="right-icons">
+    <button mat-icon-button class="example-icon" aria-label="Settings">
+      <mat-icon>settings</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon" aria-label="Notifications">
+      <mat-icon>notifications</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon" aria-label="Account">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>

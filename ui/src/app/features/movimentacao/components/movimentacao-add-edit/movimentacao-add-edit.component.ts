@@ -10,11 +10,11 @@ import { buscarPorChave } from '../../services/model/TipoMovimentacao';
 import { MovimentacoesService } from '../../services/movimentacoes.service';
 
 @Component({
-  selector: 'app-movimentacao-add-edit-dialog',
+  selector: 'app-movimentacao-add-edit',
   standalone: true,
   imports: [MaterialModule, CommonModule],
-  templateUrl: './movimentacao-add-edit-dialog.component.html',
-  styleUrl: './movimentacao-add-edit-dialog.component.scss'
+  templateUrl: './movimentacao-add-edit.component.html',
+  styleUrl: './movimentacao-add-edit.component.scss'
 })
 
 
