@@ -1,8 +1,8 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '@environment';
 import { Observable } from 'rxjs';
-import { environment } from 'src/enviroments/environment';
 
 @Injectable({
   providedIn: 'root'
