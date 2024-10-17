@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -8,20 +8,20 @@ import { Observable } from 'rxjs';
 })
 export class MovimentacoesService {
 
-constructor(private http: HttpClient) { }
+constructor(private readonly http: HttpClient) { }
 
 getMovimentacoes(movimentacaoFilter: any): Observable<any> {
   console.log(movimentacaoFilter)
-  return this.http.get<any>('http://localhost:8080/movimentacao/movimentacaoBy', { params: this.prepareGetRequest(movimentacaoFilter) });
+  return this.http.get<any>('/movimentacao/movimentacaoBy', { params: this.prepareGetRequest(movimentacaoFilter) });
 }
 
 // Exemplo de método para adicionar uma nova movimentação no backend
 adicionarMovimentacao(movimentacao: any): Observable<any> {
-  return this.http.post<any>('http://localhost:8080/movimentacao', movimentacao);
+  return this.http.post<any>('/movimentacao', movimentacao);
 }
 
 atualizarMovimentacao(movimentacao: any): Observable<any[]> {
-  return this.http.put<any[]>('http://localhost:8080/movimentacao', movimentacao);
+  return this.http.put<any[]>('/movimentacao', movimentacao);
 }
 
 prepareGetRequest(formValue: any): any {
