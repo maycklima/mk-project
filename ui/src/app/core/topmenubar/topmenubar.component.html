@@ -43,9 +43,26 @@
 
   <!-- Right-aligned icons -->
   <div class="right-icons">
-    <button mat-icon-button class="example-icon" (click)="navigateTo('/configuracoes')" aria-label="Settings">
+    <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu" aria-label="Settings">
       <mat-icon>settings</mat-icon>
     </button>
+    <mat-menu #menu="matMenu" xPosition="before" >
+      <button mat-menu-item (click)="navigateTo('/contas')">
+        <span>Contas</span>
+      </button>
+      <button mat-menu-item (click)="navigateTo('/cartoes')">
+        <span>Cartões</span>
+      </button>
+      <button mat-menu-item (click)="navigateTo('/categorias')">
+        <span>Categorias</span>
+      </button>
+      <button mat-menu-item >
+        <span>Preferencias</span>
+      </button>
+      <button mat-menu-item>
+        <span>Meu plano</span>
+      </button>
+    </mat-menu>
     <button mat-icon-button class="example-icon" aria-label="Notifications">
       <mat-icon>notifications</mat-icon>
     </button>
